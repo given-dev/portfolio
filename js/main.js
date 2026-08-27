@@ -119,7 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
     '.timeline-item',
     '.contact-card',
     '.vision-item',
-    '.experiment-item'
+    '.experiment-item',
+    '.blog-card'
   ];
 
   animatableElements.forEach(selector => {
