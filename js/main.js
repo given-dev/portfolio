@@ -256,13 +256,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     hiring: `Given is available for opportunities! You can reach him at <strong>giventuhaise12@gmail.com</strong> or through his LinkedIn profile.`,
 
-    default: `I'm not sure about that one. But you can reach Given directly:
-      <ul>
-        <li><a href="mailto:giventuhaise12@gmail.com" style="color:var(--color-primary);text-decoration:underline;">Email him</a></li>
-        <li><a href="https://wa.me/256760931135" target="_blank" style="color:var(--color-primary);text-decoration:underline;">Message on WhatsApp</a></li>
-        <li><a href="https://linkedin.com/in/given-tuhaise" target="_blank" style="color:var(--color-primary);text-decoration:underline;">Connect on LinkedIn</a></li>
-        <li><a href="https://github.com/given-div" target="_blank" style="color:var(--color-primary);text-decoration:underline;">View GitHub</a></li>
-      </ul>`
+    default: `I'm not sure about that one. Let me connect you with Given directly on WhatsApp so he can help you right away!
+      <br><br>
+      <a href="https://wa.me/256760931135?text=Hi%20Given%2C%20I%20have%20a%20question%20about%20your%20portfolio." target="_blank" style="display:inline-block;padding:8px 16px;background:#25d366;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.85rem;">Chat on WhatsApp <i class="fas fa-arrow-right" style="margin-left:4px;"></i></a>`
   };
 
   const keywords = {
