@@ -199,4 +199,141 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   `;
   document.head.appendChild(style);
+
+  // ============================================
+  // CHATBOT
+  // ============================================
+  const chatbot = document.getElementById('chatbot');
+  const chatbotToggle = document.getElementById('chatbot-toggle');
+  const chatbotClose = document.getElementById('chatbot-close');
+  const chatbotWindow = document.getElementById('chatbot-window');
+  const chatbotMessages = document.getElementById('chatbot-messages');
+  const chatbotForm = document.getElementById('chatbot-form');
+  const chatbotInput = document.getElementById('chatbot-input');
+  const chatbotSuggestions = document.getElementById('chatbot-suggestions');
+
+  const responses = {
+    greeting: `Hey there! Welcome to Given's portfolio. How can I help you? You can ask about his <strong>skills</strong>, <strong>projects</strong>, <strong>experience</strong>, or <strong>contact</strong> info.`,
+
+    skills: `Given's technical skills include:
+      <ul>
+        <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript</li>
+        <li><strong>Backend:</strong> PHP, Node.js, Express</li>
+        <li><strong>Databases:</strong> MySQL, PostgreSQL, Oracle</li>
+        <li><strong>Analysis:</strong> ERD, DFD, UML, BPMN</li>
+        <li><strong>Networking:</strong> TCP/IP, DNS, DHCP, Linux</li>
+        <li><strong>Tools:</strong> Git, GitHub, VS Code, Figma, Postman</li>
+      </ul>`,
+
+    projects: `Given has built several projects:
+      <ul>
+        <li><a href="project-1.html" target="_blank" style="color:var(--color-primary);text-decoration:underline;">Campus Express</a> — A campus food marketplace connecting students with vendors (HTML, CSS, JS, PHP)</li>
+        <li><a href="project-2.html" target="_blank" style="color:var(--color-primary);text-decoration:underline;">LAPOK Ventures</a> — Digital platform for Coca-Cola bulk distribution (HTML, CSS, JS)</li>
+        <li><a href="project-3.html" target="_blank" style="color:var(--color-primary);text-decoration:underline;">Sports/Match Platform</a> — Football data and match information web app (HTML, CSS, JS, REST API)</li>
+        <li><a href="project-4.html" target="_blank" style="color:var(--color-primary);text-decoration:underline;">Inventory Management System</a> — Business system for managing products, stock, and alerts (PHP, MySQL)</li>
+      </ul>`,
+
+    experience: `Given completed an internship at <strong>MTN Uganda</strong>, where he gained hands-on experience in:
+      <ul>
+        <li>Customer Service & Business Operations</li>
+        <li>Enterprise Technology Environments</li>
+        <li>Professional Teamwork & Communication</li>
+        <li>How Systems Support Business Processes</li>
+      </ul>
+      He is also an ongoing Information Systems and Technology student.`,
+
+    contact: `You can reach Given through:
+      <ul>
+        <li><strong>Email:</strong> giventuhaise12@gmail.com</li>
+        <li><strong>GitHub:</strong> github.com/given-div</li>
+        <li><strong>LinkedIn:</strong> linkedin.com/in/given-tuhaise</li>
+        <li><strong>WhatsApp:</strong> +256 760 931 135</li>
+      </ul>`,
+
+    about: `Given is an Information Systems student and aspiring software developer. He's passionate about turning ideas, business challenges, and everyday problems into practical digital solutions. He thinks beyond code — caring about the problem, users, business processes, and real-world impact.`,
+
+    education: `Given is currently studying <strong>Information Systems and Technology</strong>. His coursework covers software development, database systems, systems analysis & design, and networking.`,
+
+    hiring: `Given is available for opportunities! You can reach him at <strong>giventuhaise12@gmail.com</strong> or through his LinkedIn profile.`,
+
+    default: `I'm not sure about that one. You can ask me about Given's:
+      <ul>
+        <li><strong>Skills</strong> — technologies and tools he uses</li>
+        <li><strong>Projects</strong> — things he's built</li>
+        <li><strong>Experience</strong> — work and internships</li>
+        <li><strong>Education</strong> — studies and coursework</li>
+        <li><strong>Contact</strong> — how to reach or hire him</li>
+      </ul>`
+  };
+
+  const keywords = {
+    greeting: ['hey', 'hi', 'hello', 'yo', 'sup', 'howdy', 'greetings', 'good morning', 'good afternoon', 'good evening', 'what\'s up', 'whats up'],
+    skills: ['skill', 'skills', 'technology', 'tech', 'stack', 'know', 'knows', 'can do', 'tools', 'programming', 'languages', 'frameworks', 'abilities', 'proficient', 'expertise'],
+    projects: ['project', 'projects', 'portfolio', 'work', 'built', 'created', 'apps', 'applications', 'websites', 'done', 'made'],
+    experience: ['experience', 'internship', 'intern', 'work history', 'job', 'career', 'working', 'worked', 'background'],
+    contact: ['contact', 'email', 'reach', 'phone', 'whatsapp', 'linkedin', 'github', 'get in touch', 'hire', 'get given', 'connect', 'talk', 'speak', 'message', 'reach him', 'reach out', 'how can i', 'where can i', 'find him'],
+    about: ['about', 'who', 'tell me about', 'background', 'bio', 'introduction', 'himself', 'yourself', 'describe'],
+    education: ['education', 'study', 'studying', 'student', 'university', 'college', 'school', 'degree', 'course', 'learning', 'studied'],
+    hiring: ['hire', 'hiring', 'available', 'opportunity', 'opportunities', 'looking for', 'job', 'employ', 'recruit', 'freelance', 'contract']
+  };
+
+  function matchTopic(input) {
+    const lower = input.toLowerCase();
+    for (const [topic, words] of Object.entries(keywords)) {
+      if (words.some(w => lower.includes(w))) return topic;
+    }
+    return 'default';
+  }
+
+  function addMessage(text, sender) {
+    const msg = document.createElement('div');
+    msg.className = `chatbot-message ${sender}`;
+    const avatarLabel = sender === 'bot' ? 'G.' : 'You';
+    msg.innerHTML = `
+      <div class="chatbot-message-avatar"><span>${avatarLabel}</span></div>
+      <div class="chatbot-message-content"><p>${text}</p></div>
+    `;
+    chatbotMessages.appendChild(msg);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+
+  function handleUserMessage(text) {
+    if (!text.trim()) return;
+    addMessage(text, 'user');
+    chatbotInput.value = '';
+
+    const topic = matchTopic(text);
+    setTimeout(() => {
+      addMessage(responses[topic], 'bot');
+    }, 400);
+  }
+
+  chatbotToggle.addEventListener('click', () => {
+    chatbot.classList.toggle('open');
+    if (chatbot.classList.contains('open')) {
+      setTimeout(() => chatbotInput.focus(), 300);
+    }
+  });
+
+  chatbotClose.addEventListener('click', () => {
+    chatbot.classList.remove('open');
+  });
+
+  chatbotForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    handleUserMessage(chatbotInput.value);
+  });
+
+  chatbotSuggestions.querySelectorAll('.chatbot-suggestion').forEach(btn => {
+    btn.addEventListener('click', () => {
+      handleUserMessage(btn.dataset.question);
+    });
+  });
+
+  // Close chatbot on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && chatbot.classList.contains('open')) {
+      chatbot.classList.remove('open');
+    }
+  });
 });

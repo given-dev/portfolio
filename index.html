@@ -767,17 +767,14 @@
             <i class="fab fa-github"></i>
           </div>
           <span class="contact-label">GitHub</span>
-          <span class="contact-value"><github class="com">
-          <given-div></given-div></span>
+          <span class="contact-value">github.com/given-div</span>
         </a>
         <a href="https://linkedin.com/in/given-tuhaise" target="_blank" class="contact-card">
           <div class="contact-icon">
             <i class="fab fa-linkedin"></i>
           </div>
           <span class="contact-label">LinkedIn</span>
-          <span class="contact-value"><linkedin class="com">
-          <in>
-          <giventuhaise></giventuhaise></span>
+          <span class="contact-value">linkedin.com/in/given-tuhaise</span>
         </a>
         <a href="https://wa.me/256760931135" target="_blank" class="contact-card">
           <div class="contact-icon">
@@ -810,6 +807,50 @@
       </div>
     </div>
   </footer>
+
+  <!-- Chatbot -->
+  <div class="chatbot" id="chatbot">
+    <button class="chatbot-toggle" id="chatbot-toggle" aria-label="Open chat">
+      <i class="fas fa-comment-dots chatbot-icon-open"></i>
+      <i class="fas fa-times chatbot-icon-close"></i>
+    </button>
+    <div class="chatbot-window" id="chatbot-window">
+      <div class="chatbot-header">
+        <div class="chatbot-header-info">
+          <div class="chatbot-avatar">
+            <span>G.</span>
+          </div>
+          <div>
+            <h4>Given's Assistant</h4>
+            <span class="chatbot-status">Ask me anything</span>
+          </div>
+        </div>
+        <button class="chatbot-close" id="chatbot-close" aria-label="Close chat">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="chatbot-messages" id="chatbot-messages">
+        <div class="chatbot-message bot">
+          <div class="chatbot-message-avatar"><span>G.</span></div>
+          <div class="chatbot-message-content">
+            <p>Hi there! I'm Given's virtual assistant. Ask me about his skills, projects, experience, or how to get in touch.</p>
+          </div>
+        </div>
+      </div>
+      <div class="chatbot-suggestions" id="chatbot-suggestions">
+        <button class="chatbot-suggestion" data-question="What are your skills?">Skills</button>
+        <button class="chatbot-suggestion" data-question="Tell me about your projects">Projects</button>
+        <button class="chatbot-suggestion" data-question="What is your experience?">Experience</button>
+        <button class="chatbot-suggestion" data-question="How can I contact you?">Contact</button>
+      </div>
+      <form class="chatbot-input" id="chatbot-form">
+        <input type="text" id="chatbot-input" placeholder="Type a message..." autocomplete="off">
+        <button type="submit" aria-label="Send">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>
