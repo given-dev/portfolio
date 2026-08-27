@@ -256,13 +256,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     hiring: `Given is available for opportunities! You can reach him at <strong>giventuhaise12@gmail.com</strong> or through his LinkedIn profile.`,
 
-    default: `I'm not sure about that one. You can ask me about Given's:
+    default: `I'm not sure about that one. But you can reach Given directly:
       <ul>
-        <li><strong>Skills</strong> — technologies and tools he uses</li>
-        <li><strong>Projects</strong> — things he's built</li>
-        <li><strong>Experience</strong> — work and internships</li>
-        <li><strong>Education</strong> — studies and coursework</li>
-        <li><strong>Contact</strong> — how to reach or hire him</li>
+        <li><a href="mailto:giventuhaise12@gmail.com" style="color:var(--color-primary);text-decoration:underline;">Email him</a></li>
+        <li><a href="https://wa.me/256760931135" target="_blank" style="color:var(--color-primary);text-decoration:underline;">Message on WhatsApp</a></li>
+        <li><a href="https://linkedin.com/in/given-tuhaise" target="_blank" style="color:var(--color-primary);text-decoration:underline;">Connect on LinkedIn</a></li>
+        <li><a href="https://github.com/given-div" target="_blank" style="color:var(--color-primary);text-decoration:underline;">View GitHub</a></li>
       </ul>`
   };
 
