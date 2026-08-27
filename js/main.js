@@ -214,7 +214,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatbotSuggestions = document.getElementById('chatbot-suggestions');
 
   const responses = {
-    greeting: `Hey there! Welcome to Given's portfolio. How can I help you? You can ask about his <strong>skills</strong>, <strong>projects</strong>, <strong>experience</strong>, or <strong>contact</strong> info.`,
+    greeting: `Hey there! Welcome to Given's portfolio. How can I help you? You can ask about his <strong>skills</strong>, <strong>projects</strong>, <strong>experience</strong>, <strong>blog</strong>, or <strong>contact</strong> info.`,
+
+    blog: `Given has written a few blog posts:
+      <ul>
+        <li><strong>Why I Started With Vanilla JS Before Frameworks</strong> — Why learning fundamentals first matters</li>
+        <li><strong>How My MTN Internship Changed How I See Technology</strong> — Lessons from real-world enterprise systems</li>
+        <li><strong>Building Campus Express: From Idea to Working Prototype</strong> — The story behind the food marketplace project</li>
+      </ul>
+      Check them out in the <a href="#blog" style="color:var(--color-primary);text-decoration:underline;">Blog section</a> above!`,
 
     skills: `Given's technical skills include:
       <ul>
@@ -266,6 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     greeting: ['hey', 'hi', 'hello', 'yo', 'sup', 'howdy', 'greetings', 'good morning', 'good afternoon', 'good evening', 'what\'s up', 'whats up'],
     skills: ['skill', 'skills', 'technology', 'tech', 'stack', 'know', 'knows', 'can do', 'tools', 'programming', 'languages', 'frameworks', 'abilities', 'proficient', 'expertise'],
     projects: ['project', 'projects', 'portfolio', 'work', 'built', 'created', 'apps', 'applications', 'websites', 'done', 'made'],
+    blog: ['blog', 'article', 'articles', 'posts', 'post', 'wrote', 'writing', 'thoughts', 'read'],
     experience: ['experience', 'internship', 'intern', 'work history', 'job', 'career', 'working', 'worked', 'background'],
     contact: ['contact', 'email', 'reach', 'phone', 'whatsapp', 'linkedin', 'github', 'get in touch', 'hire', 'get given', 'connect', 'talk', 'speak', 'message', 'reach him', 'reach out', 'how can i', 'where can i', 'find him'],
     about: ['about', 'who', 'tell me about', 'background', 'bio', 'introduction', 'himself', 'yourself', 'describe'],
