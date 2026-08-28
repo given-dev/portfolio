@@ -40,6 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Close mobile nav on outside click
+  document.addEventListener('click', (e) => {
+    if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+      navLinks.classList.remove('active');
+      navToggle.classList.remove('active');
+    }
+  });
+
+  // Close mobile nav on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+      navLinks.classList.remove('active');
+      navToggle.classList.remove('active');
+    }
+  });
+
   // Navbar scroll effect
   const navbar = document.getElementById('navbar');
   let lastScroll = 0;

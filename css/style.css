@@ -1962,6 +1962,7 @@ body {
     opacity: 0;
     pointer-events: none;
     transition: var(--transition);
+    z-index: 999;
   }
 
   .nav-links.active {
@@ -1977,7 +1978,7 @@ body {
   .hero-container {
     grid-template-columns: 1fr;
     text-align: center;
-    padding: 40px 24px;
+    padding: 40px 20px;
   }
 
   .hero-content {
@@ -1998,13 +1999,13 @@ body {
   }
 
   .hero-image-wrapper {
-    width: 260px;
-    height: 300px;
+    width: 240px;
+    height: 280px;
   }
 
   .hero-image-bg {
-    width: 260px;
-    height: 300px;
+    width: 240px;
+    height: 280px;
   }
 
   .about-grid {
@@ -2013,12 +2014,16 @@ body {
   }
 
   .about-image {
-    max-width: 300px;
+    max-width: 280px;
     margin: 0 auto;
   }
 
   .capabilities-grid {
     grid-template-columns: 1fr;
+  }
+
+  .capability-card {
+    padding: 32px;
   }
 
   .projects-grid {
@@ -2039,6 +2044,7 @@ body {
 
   .contact-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
   .experiments-grid {
@@ -2052,30 +2058,205 @@ body {
   .features-grid {
     grid-template-columns: 1fr;
   }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 480px) {
   .section {
-    padding: 80px 0;
+    padding: 64px 0;
+  }
+
+  .section-header {
+    margin-bottom: 40px;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  /* Hero Mobile */
+  .hero {
+    min-height: auto;
+    padding-top: 100px;
+    padding-bottom: 48px;
+  }
+
+  .hero-container {
+    padding: 0 16px;
+    gap: 32px;
+  }
+
+  .hero-badge {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    margin-bottom: 20px;
   }
 
   .hero-title {
+    font-size: 1.8rem;
     letter-spacing: -1px;
-    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 16px;
   }
 
   .hero-image-wrapper {
-    width: 220px;
-    height: 260px;
+    width: 200px;
+    height: 240px;
   }
 
   .hero-image-bg {
-    width: 220px;
-    height: 260px;
+    width: 200px;
+    height: 240px;
   }
 
-  .contact-grid {
-    grid-template-columns: 1fr;
+  /* About Mobile */
+  .about-lead {
+    font-size: 1.15rem;
+  }
+
+  .about-traits {
+    justify-content: center;
+  }
+
+  /* Capabilities Mobile */
+  .capability-card {
+    padding: 28px;
+  }
+
+  /* Projects Mobile */
+  .project-card {
+    padding: 24px;
+  }
+
+  .projects-filter {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .filter-btn {
+    padding: 6px 14px;
+    font-size: 0.8rem;
+  }
+
+  /* Stack Mobile */
+  .stack-category {
+    padding: 24px;
+  }
+
+  /* Timeline Mobile */
+  .timeline-item {
+    padding-left: 48px;
+  }
+
+  .timeline-content {
+    padding: 24px;
+  }
+
+  /* Journey Mobile */
+  .journey-track {
+    padding: 24px 0;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .journey-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .journey-step {
+    min-width: 80px;
+  }
+
+  .journey-step span {
+    font-size: 0.65rem;
+  }
+
+  /* Why Cards Mobile */
+  .why-card {
+    padding: 28px;
+  }
+
+  .why-number {
+    font-size: 2.5rem;
+  }
+
+  /* Blog Mobile */
+  .blog-card-image {
+    height: 140px;
+  }
+
+  .blog-card-content {
+    padding: 20px;
+  }
+
+  .blog-card-title {
+    font-size: 1rem;
+  }
+
+  /* Vision Mobile */
+  .vision-interests {
+    gap: 10px;
+  }
+
+  .vision-item {
+    padding: 10px 16px;
+    font-size: 0.8rem;
+  }
+
+  /* Contact Mobile */
+  .contact-card {
+    padding: 24px 16px;
+  }
+
+  .contact-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.1rem;
+  }
+
+  .contact-value {
+    font-size: 0.8rem;
+  }
+
+  /* Footer Mobile */
+  .footer {
+    padding: 40px 0 24px;
   }
 
   .footer-links {
@@ -2084,19 +2265,88 @@ body {
     text-align: center;
   }
 
+  .footer-links a {
+    font-size: 0.8rem;
+  }
+
+  .footer-bottom p {
+    font-size: 0.7rem;
+  }
+
+  /* Chatbot Mobile */
   .chatbot {
     bottom: 16px;
     right: 16px;
   }
 
+  .chatbot-toggle {
+    width: 50px;
+    height: 50px;
+    font-size: 1.1rem;
+  }
+
   .chatbot-window {
-    width: calc(100vw - 32px);
+    position: fixed;
+    bottom: 0;
+    left: 0;
     right: 0;
-    max-height: 70vh;
+    width: 100%;
+    max-height: 85vh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   }
 
   .chatbot-messages {
-    min-height: 200px;
-    max-height: 45vh;
+    min-height: 250px;
+    max-height: 55vh;
+    padding: 16px;
+  }
+
+  .chatbot-suggestions {
+    padding: 0 16px 10px;
+  }
+
+  .chatbot-suggestion {
+    font-size: 0.72rem;
+    padding: 5px 10px;
+  }
+
+  .chatbot-input {
+    padding: 10px 12px;
+  }
+
+  .chatbot-input input {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+
+  /* Experiments Mobile */
+  .experiments {
+    padding: 24px;
+  }
+
+  .experiment-item {
+    padding: 10px 12px;
+    font-size: 0.8rem;
+  }
+
+  /* Project Pages Mobile */
+  .project-hero {
+    padding-top: 100px;
+  }
+
+  .project-hero-title {
+    font-size: 1.8rem;
+  }
+
+  .project-detail-card {
+    padding: 24px;
+  }
+
+  .feature-card {
+    padding: 24px;
+  }
+
+  .result-card {
+    padding: 28px;
   }
 }
