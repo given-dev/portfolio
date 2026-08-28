@@ -159,36 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
     heroAccent.style.opacity = '1';
   }
 
-  // Counter animation for hero stats
-  const stats = document.querySelectorAll('.hero-stat-number');
-  const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounter(entry.target);
-        statsObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  stats.forEach(stat => statsObserver.observe(stat));
-
-  function animateCounter(element) {
-    const text = element.textContent;
-    const number = parseInt(text);
-    const suffix = text.replace(/[0-9]/g, '');
-    let current = 0;
-    const increment = number / 30;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= number) {
-        element.textContent = text;
-        clearInterval(timer);
-      } else {
-        element.textContent = Math.floor(current) + suffix;
-      }
-    }, 40);
-  }
-
   // Add nav-active style dynamically
   const style = document.createElement('style');
   style.textContent = `
