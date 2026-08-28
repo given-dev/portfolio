@@ -399,56 +399,39 @@ body {
 /* ============================================
    ABOUT SECTION
    ============================================ */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 80px;
-  align-items: center;
-}
-
-.about-image {
+.about-content-wrapper {
   position: relative;
-  max-width: 300px;
+  max-width: 800px;
   margin: 0 auto;
-}
-
-.about-image-wrapper {
-  position: relative;
-  z-index: 1;
-  border-radius: var(--radius-lg);
   overflow: hidden;
-  aspect-ratio: 4/5;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
 }
 
-.about-photo {
+.about-watermark {
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 350px;
+  height: 420px;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about-watermark img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  display: block;
 }
 
-.about-image-placeholder {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent-light));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4rem;
-  color: var(--color-primary);
+[data-theme="dark"] .about-watermark {
+  opacity: 0.08;
 }
 
-.about-image-accent {
-  position: absolute;
-  top: -12px;
-  right: -12px;
-  width: 100%;
-  height: 100%;
-  border: 2px solid var(--color-primary);
-  border-radius: var(--radius-lg);
-  opacity: 0.2;
+.about-content {
+  position: relative;
+  z-index: 1;
 }
 
 .about-lead {
@@ -1915,10 +1898,6 @@ body {
    RESPONSIVE DESIGN
    ============================================ */
 @media (max-width: 1024px) {
-  .about-grid {
-    gap: 48px;
-  }
-
   .stack-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2007,14 +1986,11 @@ body {
     height: 280px;
   }
 
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .about-image {
-    max-width: 280px;
-    margin: 0 auto;
+  .about-watermark {
+    width: 250px;
+    height: 300px;
+    right: -40px;
+    opacity: 0.05;
   }
 
   .capabilities-grid {
@@ -2145,6 +2121,13 @@ body {
   /* About Mobile */
   .about-lead {
     font-size: 1.15rem;
+  }
+
+  .about-watermark {
+    width: 200px;
+    height: 240px;
+    right: -30px;
+    opacity: 0.04;
   }
 
   .about-traits {
