@@ -349,17 +349,6 @@ body {
   object-position: center top;
 }
 
-.hero-image-bg {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 380px;
-  height: 450px;
-  border-radius: var(--radius-xl);
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  z-index: 1;
-}
-
 /* ============================================
    SECTIONS
    ============================================ */
@@ -1918,11 +1907,6 @@ body {
     width: 320px;
     height: 380px;
   }
-
-  .hero-image-bg {
-    width: 320px;
-    height: 380px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -1977,11 +1961,6 @@ body {
   }
 
   .hero-image-wrapper {
-    width: 240px;
-    height: 280px;
-  }
-
-  .hero-image-bg {
     width: 240px;
     height: 280px;
   }
@@ -2109,11 +2088,6 @@ body {
   }
 
   .hero-image-wrapper {
-    width: 200px;
-    height: 240px;
-  }
-
-  .hero-image-bg {
     width: 200px;
     height: 240px;
   }
