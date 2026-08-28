@@ -30,7 +30,6 @@
   --transition-fast: 0.15s ease;
   --max-width: 1200px;
   --nav-height: 72px;
-  --top-bar-height: 44px;
 }
 
 [data-theme="dark"] {
@@ -55,7 +54,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--top-bar-height) + var(--nav-height));
+  scroll-padding-top: var(--nav-height);
 }
 
 body {
@@ -74,87 +73,11 @@ body {
 }
 
 /* ============================================
-   TOP CONTACT BAR
-   ============================================ */
-.top-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--top-bar-height);
-  background: #0f172a;
-  z-index: 1001;
-}
-
-.top-bar-container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 24px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.top-bar-left {
-  display: flex;
-  align-items: center;
-}
-
-.top-bar-logo {
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: #fff;
-}
-
-.top-bar-right {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.top-bar-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #cbd5e1;
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 500;
-  transition: color var(--transition-fast);
-}
-
-.top-bar-item:hover {
-  color: #fff;
-}
-
-.top-bar-item i {
-  font-size: 0.75rem;
-  color: var(--color-primary);
-}
-
-.top-bar-social {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.top-bar-social a {
-  color: #94a3b8;
-  font-size: 0.85rem;
-  transition: color var(--transition-fast);
-}
-
-.top-bar-social a:hover {
-  color: #fff;
-}
-
-/* ============================================
    NAVIGATION
    ============================================ */
 .navbar {
   position: fixed;
-  top: var(--top-bar-height);
+  top: 0;
   left: 0;
   right: 0;
   height: var(--nav-height);
@@ -286,7 +209,7 @@ body {
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding-top: calc(var(--top-bar-height) + var(--nav-height));
+  padding-top: var(--nav-height);
   background: linear-gradient(135deg, #f8faff 0%, #eef2ff 100%);
 }
 
@@ -2025,13 +1948,9 @@ body {
 }
 
 @media (max-width: 768px) {
-  .top-bar-item span {
-    display: none;
-  }
-
   .nav-links {
     position: fixed;
-    top: calc(var(--top-bar-height) + var(--nav-height));
+    top: var(--nav-height);
     left: 0;
     right: 0;
     background: var(--color-bg);
@@ -2138,14 +2057,6 @@ body {
 @media (max-width: 480px) {
   .section {
     padding: 80px 0;
-  }
-
-  .top-bar-container {
-    padding: 0 16px;
-  }
-
-  .top-bar-social {
-    gap: 8px;
   }
 
   .hero-title {
