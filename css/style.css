@@ -521,6 +521,27 @@ body {
   color: var(--color-text-muted);
 }
 
+.capability-card-content {
+  position: relative;
+}
+
+.capability-desc strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.capability-desc strong:first-child {
+  color: var(--color-primary);
+}
+
+.capability-desc strong:nth-of-type(2) {
+  color: var(--color-accent);
+}
+
+.capability-desc strong:last-child {
+  color: var(--color-success);
+}
+
 /* ============================================
    PROJECTS SECTION
    ============================================ */
@@ -570,6 +591,26 @@ body {
 .project-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--color-card-shadow-hover);
+}
+
+.project-card-image {
+  width: calc(100% + 72px);
+  margin: -36px -36px 24px -36px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent-light));
+}
+
+.project-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-card-image img {
+  transform: scale(1.05);
 }
 
 .project-card-header {
@@ -1324,8 +1365,24 @@ body {
 }
 
 .project-hero-content {
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
+}
+
+.project-hero-image {
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  margin: 0 auto 32px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.project-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .project-icon-large {
@@ -1379,6 +1436,19 @@ body {
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   margin-bottom: 64px;
+}
+
+.project-value-section {
+  margin-bottom: 64px;
+}
+
+.project-value-card {
+  border-color: var(--color-success);
+  border-width: 2px;
+}
+
+.project-value-card .project-detail-header i {
+  color: var(--color-success);
 }
 
 .project-detail-card {
@@ -2009,6 +2079,17 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .project-card-image {
+    width: calc(100% + 64px);
+    margin: -32px -32px 24px -32px;
+    height: 160px;
+  }
+
+  .project-hero-image {
+    height: 200px;
+    border-radius: var(--radius-lg);
+  }
+
   .features-grid {
     grid-template-columns: 1fr;
   }
@@ -2116,6 +2197,17 @@ body {
   /* Projects Mobile */
   .project-card {
     padding: 24px;
+  }
+
+  .project-card-image {
+    width: calc(100% + 48px);
+    margin: -24px -24px 20px -24px;
+    height: 140px;
+  }
+
+  .project-hero-image {
+    height: 160px;
+    margin-bottom: 24px;
   }
 
   .projects-filter {
