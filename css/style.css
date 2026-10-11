@@ -33,9 +33,9 @@
 }
 
 [data-theme="dark"] {
-  --color-bg: #0a0a14;
-  --color-bg-alt: #12121e;
-  --color-bg-card: #16162a;
+  --color-bg: #000000;
+  --color-bg-alt: #000000;
+  --color-bg-card: #000000;
   --color-text: #e8e8f4;
   --color-text-secondary: #a0a0c0;
   --color-text-muted: #6a6a8c;
@@ -90,7 +90,7 @@ body {
 }
 
 [data-theme="dark"] .navbar {
-  background: rgba(10, 10, 20, 0.8);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .nav-container {
@@ -214,7 +214,7 @@ body {
 }
 
 [data-theme="dark"] .hero {
-  background: linear-gradient(135deg, #0a0a14 0%, #0f1629 100%);
+  background: linear-gradient(135deg, #000000 0%, #000000 100%);
 }
 
 .hero-container {
