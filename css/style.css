@@ -1713,6 +1713,17 @@ body {
   box-shadow: 0 6px 24px rgba(37, 99, 235, 0.45);
 }
 
+.chatbot-icon {
+  display: block;
+  width: 28px;
+  height: 28px;
+}
+
+.chatbot-avatar .chatbot-icon {
+  width: 24px;
+  height: 24px;
+}
+
 .chatbot-icon-close {
   display: none;
 }
