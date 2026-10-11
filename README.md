@@ -4,7 +4,7 @@ Static HTML, CSS and JavaScript portfolio. Serve the repository root with any st
 
 ## CV
 
-The resume section, hero download link and assistant use `documents/Tuhaise-Given-CV.pdf`. Replace that file when the CV changes and refresh `documents/cv-preview.png` from its first page. Update the resume highlights and CV facts in `js/assistant.js` at the same time.
+The navigation, hero, footer and assistant link to `documents/Tuhaise-Given-CV.pdf`. Replace that file when the CV changes and update the CV facts in `js/assistant.js` at the same time.
 
 ## Portfolio assistant
 
