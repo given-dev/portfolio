@@ -347,7 +347,8 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 53.8% 35%;
+  /* Keep the full head visible inside the circular crop at every size. */
+  object-position: center top;
 }
 
 /* ============================================
