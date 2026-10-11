@@ -74,7 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
+      const href = this.getAttribute('href');
+      const target = href === '#' ? document.body : document.querySelector(href);
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
       }
@@ -199,108 +200,70 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatbotInput = document.getElementById('chatbot-input');
   const chatbotSuggestions = document.getElementById('chatbot-suggestions');
 
-  const responses = {
-    greeting: `Hey there! Welcome to Given's portfolio. How can I help you? You can ask about his <strong>skills</strong>, <strong>projects</strong>, <strong>experience</strong>, <strong>blog</strong>, or <strong>contact</strong> info.`,
+  // Project detail pages share this file but do not include a chat panel.
+  if (!chatbot) return;
 
-    blog: `Given has written a few blog posts:
-      <ul>
-        <li><strong>Why I Started With Vanilla JS Before Frameworks</strong> — Why learning fundamentals first matters</li>
-        <li><strong>How My MTN Internship Changed How I See Technology</strong> — Lessons from real-world enterprise systems</li>
-        <li><strong>Building Campus Express: From Idea to Working Prototype</strong> — The story behind the food marketplace project</li>
-      </ul>
-      Check them out in the <a href="#blog" style="color:var(--color-primary);text-decoration:underline;">Blog section</a> above!`,
+  const knowledge = PortfolioAssistant.fromPage(document);
+  let previousTopic = null;
 
-    skills: `Given's technical skills include:
-      <ul>
-        <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript</li>
-        <li><strong>Backend:</strong> PHP, Node.js, Express</li>
-        <li><strong>Databases:</strong> MySQL, PostgreSQL, Oracle</li>
-        <li><strong>Analysis:</strong> ERD, DFD, UML, BPMN</li>
-        <li><strong>Networking:</strong> TCP/IP, DNS, DHCP, Linux</li>
-        <li><strong>Tools:</strong> Git, GitHub, VS Code, Figma, Postman</li>
-      </ul>`,
-
-    projects: `Given has built several projects:
-      <ul>
-        <li><a href="project-1.html" target="_blank" style="color:var(--color-primary);text-decoration:underline;">Campus Express</a> — A campus food marketplace connecting students with vendors (HTML, CSS, JS, PHP)</li>
-        <li><a href="project-2.html" target="_blank" style="color:var(--color-primary);text-decoration:underline;">LAPOK Ventures</a> — Digital platform for Coca-Cola bulk distribution (HTML, CSS, JS)</li>
-        <li><a href="project-3.html" target="_blank" style="color:var(--color-primary);text-decoration:underline;">Sports/Match Platform</a> — Football data and match information web app (HTML, CSS, JS, REST API)</li>
-        <li><a href="project-4.html" target="_blank" style="color:var(--color-primary);text-decoration:underline;">Inventory Management System</a> — Business system for managing products, stock, and alerts (PHP, MySQL)</li>
-      </ul>`,
-
-    experience: `Given completed an internship at <strong>MTN Uganda</strong>, where he gained hands-on experience in:
-      <ul>
-        <li>Customer Service & Business Operations</li>
-        <li>Enterprise Technology Environments</li>
-        <li>Professional Teamwork & Communication</li>
-        <li>How Systems Support Business Processes</li>
-      </ul>
-      He is also an ongoing Information Systems and Technology student.`,
-
-    contact: `You can reach Given through:
-      <ul>
-        <li><strong>Email:</strong> giventuhaise12@gmail.com</li>
-        <li><strong>GitHub:</strong> github.com/given-div</li>
-        <li><strong>LinkedIn:</strong> linkedin.com/in/given-tuhaise</li>
-        <li><strong>WhatsApp:</strong> +256 760 931 135</li>
-      </ul>`,
-
-    about: `Given is an Information Systems student and aspiring software developer. He's passionate about turning ideas, business challenges, and everyday problems into practical digital solutions. He thinks beyond code — caring about the problem, users, business processes, and real-world impact.`,
-
-    education: `Given is currently studying <strong>Information Systems and Technology</strong>. His coursework covers software development, database systems, systems analysis & design, and networking.`,
-
-    hiring: `Given is available for opportunities! You can reach him at <strong>giventuhaise12@gmail.com</strong> or through his LinkedIn profile.`,
-
-    default: `I'm not sure about that one. Let me connect you with Given directly on WhatsApp so he can help you right away!
-      <br><br>
-      <a href="https://wa.me/256760931135?text=Hi%20Given%2C%20I%20have%20a%20question%20about%20your%20portfolio." target="_blank" style="display:inline-block;padding:8px 16px;background:#25d366;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.85rem;">Chat on WhatsApp <i class="fas fa-arrow-right" style="margin-left:4px;"></i></a>`
-  };
-
-  const keywords = {
-    greeting: ['hey', 'hi', 'hello', 'yo', 'sup', 'howdy', 'greetings', 'good morning', 'good afternoon', 'good evening', 'what\'s up', 'whats up'],
-    skills: ['skill', 'skills', 'technology', 'tech', 'stack', 'know', 'knows', 'can do', 'tools', 'programming', 'languages', 'frameworks', 'abilities', 'proficient', 'expertise'],
-    projects: ['project', 'projects', 'portfolio', 'work', 'built', 'created', 'apps', 'applications', 'websites', 'done', 'made'],
-    blog: ['blog', 'article', 'articles', 'posts', 'post', 'wrote', 'writing', 'thoughts', 'read'],
-    experience: ['experience', 'internship', 'intern', 'work history', 'job', 'career', 'working', 'worked', 'background'],
-    contact: ['contact', 'email', 'reach', 'phone', 'whatsapp', 'linkedin', 'github', 'get in touch', 'hire', 'get given', 'connect', 'talk', 'speak', 'message', 'reach him', 'reach out', 'how can i', 'where can i', 'find him'],
-    about: ['about', 'who', 'tell me about', 'background', 'bio', 'introduction', 'himself', 'yourself', 'describe'],
-    education: ['education', 'study', 'studying', 'student', 'university', 'college', 'school', 'degree', 'course', 'learning', 'studied'],
-    hiring: ['hire', 'hiring', 'available', 'opportunity', 'opportunities', 'looking for', 'job', 'employ', 'recruit', 'freelance', 'contract']
-  };
-
-  function matchTopic(input) {
-    const lower = input.toLowerCase();
-    for (const [topic, words] of Object.entries(keywords)) {
-      if (words.some(w => lower.includes(w))) return topic;
-    }
-    return 'default';
-  }
-
-  function addMessage(text, sender) {
+  function addMessage(content, sender) {
     const msg = document.createElement('div');
     msg.className = `chatbot-message ${sender}`;
-    const avatarLabel = sender === 'bot' ? 'G.' : 'You';
-    msg.innerHTML = `
-      <div class="chatbot-message-avatar"><span>${avatarLabel}</span></div>
-      <div class="chatbot-message-content"><p>${text}</p></div>
-    `;
+    const avatar = document.createElement('div');
+    avatar.className = 'chatbot-message-avatar';
+    avatar.textContent = sender === 'bot' ? 'G.' : 'You';
+    const body = document.createElement('div');
+    body.className = 'chatbot-message-content';
+    if (typeof content === 'string') {
+      const paragraph = document.createElement('p');
+      paragraph.textContent = content;
+      body.appendChild(paragraph);
+    } else {
+      content.entries.forEach(entry => {
+        const title = document.createElement('strong');
+        title.textContent = entry.title;
+        body.appendChild(title);
+        entry.text.split('\n').forEach(line => {
+          const paragraph = document.createElement('p');
+          paragraph.textContent = line;
+          body.appendChild(paragraph);
+        });
+        const source = document.createElement('a');
+        source.href = entry.href;
+        source.textContent = entry.source;
+        source.className = 'chatbot-source';
+        if (entry.href.endsWith('.pdf')) {
+          source.target = '_blank';
+          source.rel = 'noopener';
+        }
+        body.appendChild(source);
+      });
+    }
+    msg.append(avatar, body);
     chatbotMessages.appendChild(msg);
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
   }
 
   function handleUserMessage(text) {
-    if (!text.trim()) return;
-    addMessage(text, 'user');
+    const message = text.trim().slice(0, 500);
+    if (!message) return;
+    addMessage(message, 'user');
     chatbotInput.value = '';
-
-    const topic = matchTopic(text);
-    setTimeout(() => {
-      addMessage(responses[topic], 'bot');
-    }, 400);
+    const result = PortfolioAssistant.answer(message, knowledge, previousTopic);
+    if (result.kind === 'answer') {
+      previousTopic = result.entries[0].id;
+      addMessage(result, 'bot');
+    } else if (result.kind === 'greeting') {
+      addMessage(result.text, 'bot');
+    } else {
+      addMessage("I couldn't find that information in Given's portfolio or CV. Try a specific project, education, skills or experience question, or contact Given for details.", 'bot');
+      addMessage({ entries: [{title: 'Contact Given', text: 'For information not covered here, reach out directly.', href: '#contact', source: 'Open contact section'}] }, 'bot');
+    }
   }
 
   chatbotToggle.addEventListener('click', () => {
     chatbot.classList.toggle('open');
+    chatbotToggle.setAttribute('aria-expanded', String(chatbot.classList.contains('open')));
     if (chatbot.classList.contains('open')) {
       setTimeout(() => chatbotInput.focus(), 300);
     }
@@ -308,6 +271,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   chatbotClose.addEventListener('click', () => {
     chatbot.classList.remove('open');
+    chatbotToggle.setAttribute('aria-expanded', 'false');
+    chatbotToggle.focus();
   });
 
   chatbotForm.addEventListener('submit', (e) => {
@@ -325,6 +290,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && chatbot.classList.contains('open')) {
       chatbot.classList.remove('open');
+      chatbotToggle.setAttribute('aria-expanded', 'false');
+      chatbotToggle.focus();
     }
   });
 });
