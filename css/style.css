@@ -1724,7 +1724,7 @@ body {
   height: 24px;
 }
 
-.chatbot-icon-close {
+.chatbot-toggle .chatbot-icon-close {
   display: none;
 }
 
